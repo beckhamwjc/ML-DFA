@@ -22,11 +22,17 @@ No guarantees for other combination of package versions. Other packages may be n
 A set of ANN parameters has been included in the `ML-DFA/test/` directory, which can be directly used for energetic calculations as a custom XC functional of the PySCF.
 
 For your own test sets, the usage takes simple precedures:
-- Prepare the input geometry files along with a list of spin multiplicity for each species in the same directory. Note the spin multiplicity will be converted to the number of unpaired electrons in the script for PySCF input (*line 150*). 
-- Fill in the path of the test set and the spin list on *line 149* and *line 151*.
-- You may need to create a list of charges to fill in the charge of each species on *line 164*, if you have ionic species in the test set.
-- Choose the basis set of your desire on *line 166* and change the filename of the output total energies on *line 181*.
+1. Prepare the input geometry files along with a list of spin multiplicity for each species in the same directory. Note the spin multiplicity will be converted to the number of unpaired electrons in the script for PySCF input (*line 150*). 
+2. Fill in the path of the test set and the spin list on *line 149* and *line 151*.
+3. You may need to create a list of charges to fill in the charge of each species on *line 164*, if you have ionic species in the test set.
+4. Choose the basis set of your desire on *line 166* and change the filename of the output total energies on *line 181*.
 And that's it.
 
 It takes the same procedure for ML-DFA to output electron density on default or custom grids after SCF is done.
 Refer to [PySCF Manual](https://pyscf.org/user/dft.html) and [PySCF Examples](https://github.com/pyscf/pyscf/tree/master/examples/dft) for further information.
+
+## Train an ML-DFA
+Procedures for training:
+1. Change the structure of the ANN in the `ML-DFA/training/snn_3h.py` if you do not want a three-hidden-layer network. Note that if you change the number of hidden layers, you have to update the weight assignment step from *line 186* to *line 208*, *line 306* and from *line 323* to *line 345*. Just follow the my example and be careful with the name of each layer in `snn_para`. You may want to print `snn_para` to check if you have got the names right. After training, update *line 87* to *line 107* in the `ML-DFA/training/predict.py` for test.
+2. Assign the scaling factor for each layer of weights starting from *line 15*.
+3. Assign the number of hidden neuron
