@@ -33,11 +33,13 @@ Refer to [PySCF Manual](https://pyscf.org/user/dft.html) and [PySCF Examples](ht
 
 ## Train an ML-DFA
 Procedures for training using `ML-DFA/train/training.py`:
-1. Change the structure of the ANN in the `ML-DFA/train/snn_3h.py` if you do not want a three-hidden-layer network. Note that if you change the number of hidden layers, you have to update the weight assignment step from *line 186* to *line 208*, *line 306* and from *line 323* to *line 345*. Just follow the my example and be careful with the name of each layer in `snn_para`. You may want to print `snn_para` to check if you have got the names right. After training, update *line 87* to *line 107* in the `ML-DFA/test/predict.py` for test.
+1. Change the structure of the ANN in the `ML-DFA/train/snn_3h.py` if you do not want a three-hidden-layer network. Note that if you change the number of hidden layers, you have to update the weight assignment step from *line 186* to *line 208*, *line 306* and from *line 323* to *line 345*. Just follow the my example and be careful with the name of each layer in `snn_para`. Then change the shape of `param` on *line 281*. You may want to print `snn_para` to check if you have got the names right. After training, update *line 87* to *line 107* in the `ML-DFA/test/predict.py` for test.
 2. Assign the scaling factor for each layer of weights starting from *line 15*.
 3. Assign the number of hidden neurons in order to the variable `hidden` on *line 26*.
-4. You have to configure some codes starting from *line 72* of `eval_xc_ml` on *line 33* **if you want to correct DFAs other than B3LYP**. Need to change *line 
+4. You have to configure some codes starting from *line 72* of `eval_xc_ml` on *line 33* **if you want to correct DFAs other than B3LYP**. Need to change *line 221, 244, 375, 410* accordingly.
 5. Fill in the reference TEs and AEs for `TE_ccsd` and `AE_ccsd` on *line 95,96*.
 6. Choose the basis set of your desire on *line 100*.
-7. Fill in the path to the input geomoetry, charge and spin for each species. Configure *line 175* - *line 180* accordingly.
-8. 
+7. Fill in the path for the input geomoetry, charge and spin for each species. Configure *line 175* - *line 180* accordingly.
+8. Set number of epochs for the optimization on *line 290*.
+9. You can use a different validation set and change filepath from *line 320*.
+After training, alter the hyperparamters if you're not satisfied with the test results. Otherwise, copy the `de_best.npz` to the `test` folder and be sure to change the settings in the `predict.py` so that it matches the settings in the training script.
