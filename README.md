@@ -11,3 +11,6 @@ Below is a list of primary python packages with the corresponding versions I use
 
 python|3.9.12
 ---|---
+pyscf|2.0.1
+pytorch|1.10.1
+nevergrad|0.4.3
