@@ -19,6 +19,11 @@ nevergrad|0.4.3
 No guarantees for other combination of package versions. Other packages may be necessary depending on the specific environment.
 
 ## ML-B3LYP for direct use
-A set of ANN parameters has been included in the `./test/` directory, which can be directly used for energetic calculations as a custom XC functional of the PySCF.
+A set of ANN parameters has been included in the `ML-DFA/test/` directory, which can be directly used for energetic calculations as a custom XC functional of the PySCF.
 
+For your own test sets, the usage takes simple precedures:
+- Prepare the input geometry files along with a list of spin multiplicity for each species in the same directory. Note the spin multiplicity will be converted to the number of unpaired electrons in the script for PySCF input (*line 150*). 
+- Fill in the path of the test set and the spin list on *line 149* and *line 151*.
+- You may need to create a list of charges to fill in the charge of each species on *line 164*, if you have ionic species in the test set.
+- Choose the basis set of your desire on *line 166* and change the filename of the output total energies on *line 181*.
 
