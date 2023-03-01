@@ -26,4 +26,7 @@ For your own test sets, the usage takes simple precedures:
 - Fill in the path of the test set and the spin list on *line 149* and *line 151*.
 - You may need to create a list of charges to fill in the charge of each species on *line 164*, if you have ionic species in the test set.
 - Choose the basis set of your desire on *line 166* and change the filename of the output total energies on *line 181*.
+And that's it.
 
+It takes the same procedure for ML-DFA to output electron density on default or custom grids after SCF is done.
+Refer to [PySCF Manual](https://pyscf.org/user/dft.html) and [PySCF Examples](https://github.com/pyscf/pyscf/tree/master/examples/dft) for further information.
