@@ -37,7 +37,8 @@ class SNN(nn.Module):
         inputs[:,1] = torch.log(torch.div((ml_in[:,0] - ml_in[:,1]),(ml_in[:,1] + ml_in[:,0] + 1e-15)) + 1 + 1e-15)
         inputs[:,2] = torch.log(torch.div(torch.pow((ml_in[:,2] + ml_in[:,3] + 2*ml_in[:,4] + 1e-15), 0.5), torch.pow((ml_in[:,0] + ml_in[:,1] + 1e-15), 4/3)))
         
-        uni = torch.pow((ml_in[:,0] + ml_in[:,1]), 4/3) * 0.75 * np.power(3/np.pi,1/3)
+        #uni = torch.pow((ml_in[:,0] + ml_in[:,1]), 4/3) * 0.75 * np.power(3/np.pi,1/3)
+        uni = ml_in[:,0] + ml_in[:,1]
         uni = torch.unsqueeze(uni,dim=1)
         
         y_pred = self.model(inputs)
